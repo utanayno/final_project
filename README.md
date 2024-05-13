@@ -9,3 +9,4 @@
 
 ### Полезные ссылки:
 - [Подсказка по markdown](https://www.markdownguide.org/)
+- [Генератор файла .gitignore](https://www.toptal.com/developers/gitignore/)
