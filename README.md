@@ -26,3 +26,5 @@
 
 ### Библиотеки:
 - pip install pytest
+- pip install Selenium
+- pip install webdriver-manager
