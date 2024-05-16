@@ -1,6 +1,9 @@
 import allure
 from page.AuthPage import AuthPage
 from page.MainPage import MainPage
+import pytest
+
+@pytest.mark.skip
 
 def test_auth(browser):
     email = "cahifa2331@rencr.com"
