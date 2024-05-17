@@ -1,11 +1,13 @@
 import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
+from configuration.ConfigProvider import ConfigProvider
 
 class AuthPage:
 
     def __init__(self, driver) -> None:
-        self.__url = "https://id.atlassian.com/login?application=trello&continue=https%3A%2F%2Ftrello.com%2Fauth%2Fatlassian%2Fcallback%3Fdisplay%3DeyJ2ZXJpZmljYXRpb25TdHJhdGVneSI6InNvZnQifQ%253D%253D&display=eyJ2ZXJpZmljYXRpb25TdHJhdGVneSI6InNvZnQifQ%3D%3D"
+        url = ConfigProvider().get("ui", "base_url")
+        self.__url = url+"/login"
         self.__driver = driver
     
     @allure.step("Перейти на страницу авторизации")
