@@ -9,6 +9,7 @@ from webdriver_manager.firefox import GeckoDriverManager
 
 from api.BoardApi import BoardApi
 from configuration.ConfigProvider import ConfigProvider
+from testdata.DataProvider import DataProvider
 
 @pytest.fixture
 def browser():
@@ -32,8 +33,10 @@ def browser():
 
 @pytest.fixture
 def api_client() -> BoardApi:
+    DataProvider().get_token()
+    DataProvider().get_key()
     url = ConfigProvider().get("api", "base_url")
-    return BoardApi(url, "ATTAf9b0498f5aada9e476e2e6ad0945882bff041730e27f9e2e3a9876280b40676fB84E3A13", "8b8770fc6d22a693fc3b92ecda2cc898")
+    return BoardApi(url, DataProvider().get_token(), DataProvider().get_key())
 
 #фикстура для неавторизованного пользователя
 @pytest.fixture
@@ -43,16 +46,25 @@ def api_client_no_auth() -> BoardApi:
 #фикстура для создания доски, которая будет удалена
 @pytest.fixture
 def dummy_board_id() -> BoardApi:
-    api = BoardApi(ConfigProvider().get("api", "base_url"), "ATTAf9b0498f5aada9e476e2e6ad0945882bff041730e27f9e2e3a9876280b40676fB84E3A13", "8b8770fc6d22a693fc3b92ecda2cc898")
+    DataProvider().get_token()
+    DataProvider().get_key()
+    api = BoardApi(ConfigProvider().get("api", "base_url"), DataProvider().get_token(), DataProvider().get_key())
     resp = api.create_board("Board to be deleted").get("id")
-    return resp
+    return resp 
 
 #фикстура для удаления созданной доски
 @pytest.fixture
 def delete_board():
+    DataProvider().get_token()
+    DataProvider().get_key()
     dictionary = {"board_id": ""}
     yield dictionary
 
-    api = BoardApi(ConfigProvider().get("api", "base_url"), "ATTAf9b0498f5aada9e476e2e6ad0945882bff041730e27f9e2e3a9876280b40676fB84E3A13", "8b8770fc6d22a693fc3b92ecda2cc898")
+    api = BoardApi(ConfigProvider().get("api", "base_url"), DataProvider().get_token(), DataProvider().get_key())
     api.delete_board_by_id(dictionary.get("board_id"))
+
+#фикстура для тестовых данных
+@pytest.fixture
+def test_data():
+    return DataProvider()
    

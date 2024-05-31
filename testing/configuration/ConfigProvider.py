@@ -3,7 +3,7 @@ import configparser
 #создать конфиг.парсер
 global_config = configparser.ConfigParser()
 #вычитать содержимое файла
-global_config.read("testing/test_config.ini")
+global_config.read("final_project/testing/test_config.ini")
 
 class ConfigProvider:
     def __init__(self)-> None:

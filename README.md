@@ -21,7 +21,11 @@
 - ./page - описание страниц
 - ./api - хелперы для работы с API
 - ./db - хелперы для работы с БД
-- test_config.ini - настройки для тестов
+- ./configuration - провайдер настроек
+    test_config.ini - настройки для тестов
+- ./testdata - провайдер тестовых данных
+    test_data.json
+
 
 ### Полезные ссылки:
 - [Подсказка по markdown](https://www.markdownguide.org/)
