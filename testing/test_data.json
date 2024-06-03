@@ -4,5 +4,6 @@
     "email" : "cahifa2331@rencr.com",
     "password" : "12345678TTT",
     "username" : "Julia",
-    "org_id" : "664303eecd0e0f41a0ec0727"
+    "org_id" : "664303eecd0e0f41a0ec0727",
+    "board_name" : "Test board name"
 }
