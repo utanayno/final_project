@@ -8,6 +8,7 @@ from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.firefox import GeckoDriverManager
 
 from api.BoardApi import BoardApi
+from api.CardApi import CardApi
 from configuration.ConfigProvider import ConfigProvider
 from testdata.DataProvider import DataProvider
 
@@ -37,6 +38,13 @@ def api_client() -> BoardApi:
     DataProvider().get_key()
     url = ConfigProvider().get("api", "base_url")
     return BoardApi(url, DataProvider().get_token(), DataProvider().get_key())
+
+@pytest.fixture
+def api_client_2() -> CardApi:
+    DataProvider().get_token()
+    DataProvider().get_key()
+    url = ConfigProvider().get("api", "base_url")
+    return CardApi(url, DataProvider().get_token(), DataProvider().get_key())
 
 #фикстура для неавторизованного пользователя
 @pytest.fixture

@@ -5,5 +5,9 @@
     "password" : "12345678TTT",
     "username" : "Julia",
     "org_id" : "664303eecd0e0f41a0ec0727",
-    "board_name" : "Test board name"
+    "board_name" : "Test board name",
+    "list_name" : "Test list",
+    "second_list_name" : "Second_test list",
+    "card_name" : "Card_name",
+    "updated_card_name" : "Updated_card"
 }
