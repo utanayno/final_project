@@ -13,7 +13,7 @@ class MainPage:
 
     def __init__(self, driver) -> None:
         self.__driver = driver
-                
+                        
     
     @allure.step("Получить текущий url")
     def get_current_url(self) -> str:
@@ -72,15 +72,17 @@ class MainPage:
 
     @allure.step("Указать имя списка = {list_name}")
     def fill_name_list(self, list_name: str):
+        self.__driver.find_element(By.CSS_SELECTOR, "textarea[data-testid=list-name-textarea").clear()
         self.__driver.find_element(By.CSS_SELECTOR, "textarea[data-testid=list-name-textarea").send_keys(list_name)
 
     @allure.step("Нажать 'Добавить список'")
     def confirm_create_list(self):
         self.__driver.find_element(By.CSS_SELECTOR, "button[data-testid=list-composer-add-list-button]").click()
-        #почему-то с WebDriverWait не работал тест, со sleep работает. Может неправильно написала (пробовала несколько вариантов?)
+        #почему-то с WebDriverWait  и implicitly_wait не работал тест, со sleep работает. Может неправильно написала (пробовала несколько вариантов)?
         #WebDriverWait(self.__driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".bPNGI_VbtbXQ8v")))
         #WebDriverWait(self.__driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "h2[data-testid=list-name]")))
         #WebDriverWait(self.__driver, 10).until(EC.text_to_be_present_in_element((By.CSS_SELECTOR, "h2[data-testid=list-name]"), 'Test list'))
+        #self.__driver.implicitly_wait(3)
         sleep(3)
 
     @allure.step("Создать карточку")

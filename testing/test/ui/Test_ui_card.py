@@ -2,7 +2,41 @@ import allure
 from page.AuthPage import AuthPage
 from page.MainPage import MainPage
 from api.BoardApi import BoardApi
+from api.CardApi import CardApi
 import pytest
+from time import sleep
+
+def test2_create_card(browser, test_data:dict, api_client_2: CardApi, api_client: BoardApi, dummy_board_id, delete_board: dict):
+    #email = test_data.get("email")
+    #password = test_data.get("password")
+    #board_name = test_data.get("board_name")
+    list_name = test_data.get("list_name")
+    card_name = test_data.get("card_name")
+
+    #auth_page = AuthPage(browser)
+    #auth_page.go()
+    #auth_page.login_as(email, password)
+
+    main_page = MainPage(browser)
+    #main_page.open_create_board()
+    #main_page.choose_option_to_create()
+    #main_page.fill_name(board_name)
+    #main_page.click_save_button()
+    api_client_2.create_list(list_name, dummy_board_id)
+    #main_page.fill_name_list(list_name)
+    #main_page.confirm_create_list()
+    
+    main_page.create_card()
+    main_page.fill_name_card(card_name)
+    main_page.confirm_create_card()
+
+    info_card_name = main_page.get_card_name()
+    delete_board["board_id"] = dummy_board_id
+    
+    with allure.step("Проверить, что указано название созданной карточки"):
+        with allure.step("Название доски должно быть " +card_name):
+            assert info_card_name == card_name
+
 
 def test_create_card(browser, test_data:dict):
     email = test_data.get("email")
