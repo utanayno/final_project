@@ -78,15 +78,11 @@ class MainPage:
     @allure.step("Нажать 'Добавить список'")
     def confirm_create_list(self):
         self.__driver.find_element(By.CSS_SELECTOR, "button[data-testid=list-composer-add-list-button]").click()
-        #почему-то с WebDriverWait  и implicitly_wait не работал тест, со sleep работает. Может неправильно написала (пробовала несколько вариантов)?
-        #WebDriverWait(self.__driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".bPNGI_VbtbXQ8v")))
-        #WebDriverWait(self.__driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "h2[data-testid=list-name]")))
-        #WebDriverWait(self.__driver, 10).until(EC.text_to_be_present_in_element((By.CSS_SELECTOR, "h2[data-testid=list-name]"), 'Test list'))
-        #self.__driver.implicitly_wait(3)
-        sleep(3)
+        
 
     @allure.step("Создать карточку")
     def create_card(self):
+        sleep(3)
         self.__driver.find_element(By.CSS_SELECTOR, "button[data-testid=list-add-card-button]").click()
 
     @allure.step("Указать имя карточки = {card_name}")
@@ -96,9 +92,6 @@ class MainPage:
     @allure.step("Нажать 'Добавить карточку'")
     def confirm_create_card(self):
         self.__driver.find_element(By.CSS_SELECTOR, "button[data-testid=list-card-composer-add-card-button]").click()
-         #почему-то с WebDriverWait не работал тест, со sleep работает. Может неправильно написала (пробовала несколько вариантов?)
-        #WebDriverWait(self.__driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".RD2CmKQFZKidd6")))
-        #WebDriverWait(self.__driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "a[data-testid=card-name]")))
         sleep(3)
 
     @allure.step("Получить название карточки")
@@ -106,7 +99,6 @@ class MainPage:
         name = self.__driver.find_element(By.CSS_SELECTOR, "a[data-testid=card-name]").text
         return name
         
-    
     @allure.step("Открыть карточку")
     def open_card(self):
         self.__driver.find_element(By.CSS_SELECTOR, ".amUfYqLTZOvGsn").click()
@@ -118,10 +110,11 @@ class MainPage:
         self.__driver.find_element(By.CSS_SELECTOR, "textarea[data-testid=card-back-title-input]").clear()
         self.__driver.find_element(By.CSS_SELECTOR, "textarea[data-testid=card-back-title-input]").send_keys(updated_card)
         self.__driver.find_element(By.CSS_SELECTOR, "span[data-testid=CloseIcon]").click()
-        sleep(3)
+        
 
     @allure.step("Нажать на 'Архивировать'")
     def click_to_archive(self):
+        sleep(3)
         element_archive = self.__driver.find_element(By.CSS_SELECTOR,"a[data-testid=card-back-archive-button]")
         element_delete = self.__driver.find_element(By.CSS_SELECTOR,"a[data-testid=card-back-delete-card-button]")
         actions = ActionChains(self.__driver)
@@ -153,14 +146,11 @@ class MainPage:
     @allure.step("Нажать 'Добавить список'")
     def confirm_create_another_list(self):
         self.__driver.find_element(By.CSS_SELECTOR, "button[data-testid=list-composer-add-list-button]").click()
-        #почему-то с WebDriverWait не работал тест, со sleep работает. Может неправильно написала (пробовала несколько вариантов?)
-        #WebDriverWait(self.__driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".bPNGI_VbtbXQ8v")))
-        #WebDriverWait(self.__driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "h2[data-testid=list-name]")))
-        #WebDriverWait(self.__driver, 10).until(EC.text_to_be_present_in_element((By.CSS_SELECTOR, "h2[data-testid=list-name]"), 'Test list'))
-        sleep(3)
+        
 
     @allure.step("Переместить карточку в другую колонку")
     def move_card(self):
+        sleep(3)
         element = self.__driver.find_element(By.CSS_SELECTOR,"div[data-testid=trello-card]")
         distination = self.__driver.find_element(By.CSS_SELECTOR,"body > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > div:nth-child(1) > main:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > ol:nth-child(1) > li:nth-child(2) > div:nth-child(1) > div:nth-child(4) > button:nth-child(1)")
         actions = ActionChains(self.__driver)
