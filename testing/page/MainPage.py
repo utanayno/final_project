@@ -6,6 +6,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.common.exceptions import NoSuchElementException  
+from selenium.webdriver.common.keys import Keys
 from time import sleep
 
 
@@ -143,6 +144,12 @@ class MainPage:
     def fill_name_another_list(self, second_list_name: str):
         self.__driver.find_element(By.CSS_SELECTOR, "textarea.oe8RymzptORQ7h[data-testid=list-name-textarea]").send_keys(second_list_name)
 
+    @allure.step("Переименовать второй список")
+    def rename_second_list(self, second_list_name: str):
+        self.__driver.find_element(By.XPATH, "//h2[contains(text(),'Нужно сделать')]").clear()
+        self.__driver.find_element(By.XPATH, "//h2[contains(text(),'Нужно сделать')]").send_keys(second_list_name)
+        self.__driver.find_element(By.XPATH, "//h2[contains(text(),'Нужно сделать')]").send_keys(Keys.ENTER)
+
     @allure.step("Нажать 'Добавить список'")
     def confirm_create_another_list(self):
         self.__driver.find_element(By.CSS_SELECTOR, "button[data-testid=list-composer-add-list-button]").click()
@@ -160,7 +167,15 @@ class MainPage:
     def get_list_name(self) -> str:
         name = self.__driver.find_element(By.CSS_SELECTOR, "a.js-open-move-from-header").text
         return name
+    
+    @allure.step("Перейти на страницу доски")
+    def go_to_board(self, board_url):
+        self.__driver.get(board_url)
 
-       
+    @allure.step("Перейти на страницу карточки")
+    def go_to_card(self, card_url):
+        self.__driver.get(card_url)
+
+
 
     

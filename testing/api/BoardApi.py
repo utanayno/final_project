@@ -36,5 +36,21 @@ class BoardApi:
         resp = requests.delete(path)
 
         return resp.json()
+    
+    @allure.step("Получить url доски")
+    def get_board(self, id: str) -> dict:
+        
+        path = "{trello}/boards/{id}?key={keyApi}&token={tokenApi}".format(trello = self.base_url, id = id, keyApi = self.key, tokenApi = self.token)
+        resp = requests.get(path)
+
+        return resp.json()
+    
+    @allure.step("Получить id доски")
+    def get_id_of_a_board(self, org_id: str) -> dict:
+        
+        path = "{trello}/organizations/{id}/boards?key={keyApi}&token={tokenApi}".format(trello = self.base_url, id = org_id, keyApi = self.key, tokenApi = self.token)
+        resp = requests.get(path)
+
+        return resp.json()["id"]
 
         

@@ -90,6 +90,14 @@ class CardApi:
 
         return resp.json()
     
+    @allure.step("Получить url доски")
+    def get_card(self, id: str) -> dict:
+        
+        path = "{trello}/boards/{id}?key={keyApi}&token={tokenApi}".format(trello = self.base_url, id = id, keyApi = self.key, tokenApi = self.token)
+        resp = requests.get(path)
+
+        return resp.json()
+    
 
     
     
